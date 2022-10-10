@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <iomanip>
+
 
 int productid;
 std::string product;
@@ -14,26 +16,10 @@ int main() {
   char input;
   
   std::cout << "Hello! Welcome to your inventory!" << "\n";
-  std::cout << "To get started, please enter: ProductID, Name, and Quantity \n" <<
-    "====================== \n";
-    std::cout << "Product ID: ";
-    std::cin >> productid;
-    std::cout << "Product Name: ";
-    std::cin >> product;
-    std::cout << "Quantity of your product: ";
-    std::cin >> quantity;
-  
-  Product add(product, quantity);
-  inventory.insert({productid, add});
-  
-  std::cout << "You have added " 
-            << inventory.at(productid).GetQuantity() << "x " 
-            << inventory.at(productid).GetProduct() 
-            << "'s with the Product ID: " << productid << "\n"
-            << "===================== \n";
+  std::cout << "====================== \n";
   
   while (true) {
-    std::cout << "What would you like to do next? \n"
+    std::cout << "What would you like to do? \n"
             << "- Press A to add product \n"
             << "- Press R to remove product \n"
             << "- Press V to view inventory \n"
@@ -53,17 +39,26 @@ int main() {
       std::cout << "Quantity of your product: ";
       std::cin >> quantity;
   
-      Product add(product, quantity);
-      inventory.insert({productid, add});
+      Product y(product, quantity);
+      inventory.insert({productid, y});
       
       std::cout << "You have added " 
             << inventory.at(productid).GetQuantity() << "x " 
             << inventory.at(productid).GetProduct() 
             << "'s with the Product ID: " << productid << "\n"
             << "===================== \n";
+  
+      
     } else if (input == 'V' || input == 'v') {
-      for (int i = 0; i < inventory.size(); i++) {
-        std::cout << productid << "\n";
+      std::cout << "Here is the list of your inventory:\n"
+                << "=============================== \n"
+                << "Product ID: " << std::setw(10)
+                << "Product name: " << std::setw(10)
+                << "Product Quantity: \n";
+      for (std::pair<int, Product> list: inventory) {
+        std::cout << list.first
+                  << list.second.GetProduct() << std::setw(10)
+                  << list.second.GetQuantity() << "\n";
       }
       
     } else {
