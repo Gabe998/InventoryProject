@@ -52,11 +52,11 @@ int main() {
     } else if (input == 'V' || input == 'v') {
       std::cout << "Here is the list of your inventory:\n"
                 << "=============================== \n"
-                << "Product ID: " << std::setw(10)
-                << "Product name: " << std::setw(10)
-                << "Product Quantity: \n";
+                << "ID: " << std::setw(10)
+                << "Name: " << std::setw(10)
+                << "Quantity: \n";
       for (std::pair<int, Product> list: inventory) {
-        std::cout << list.first
+        std::cout << list.first << std::setw(10)
                   << list.second.GetProduct() << std::setw(10)
                   << list.second.GetQuantity() << "\n";
       }
