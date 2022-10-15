@@ -68,9 +68,8 @@ int main() {
                   << list.second.GetProduct() << "        "
                   << list.second.GetQuantity() << "\n";
       }
-      
     } else {
-    std::cout << "Invalid Input!";
+      std::cout << "Invalid Input!";
     }
  // std::cout << inventory.at(ProductID).GetProduct(); Prints ProductId name 
  // std::cout << inventory.at(ProductID)
