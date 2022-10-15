@@ -21,6 +21,7 @@ int main() {
   while (true) {
     std::cout << "What would you like to do? \n"
             << "- Press A to add product \n"
+            << "- Press S to view product name and quantity \n"
             << "- Press R to remove product \n"
             << "- Press V to view inventory \n"
             << "- Press X to exit inventory \n"
@@ -47,17 +48,24 @@ int main() {
             << inventory.at(productid).GetProduct() 
             << "'s with the Product ID: " << productid << "\n"
             << "===================== \n";
-  
+    } else if (input == 'S' || input == 's') {
+      int id;
+      std::cout << "Please enter Product ID to find its name and quantity: ";
+      std::cin >> id;
+      std::cout << "There are " << inventory.at(id).GetQuantity() 
+                << "x " << inventory.at(id).GetProduct() << "'s in your inventory \n";
+
+
       
     } else if (input == 'V' || input == 'v') {
       std::cout << "Here is the list of your inventory:\n"
                 << "=============================== \n"
-                << "Product ID: " << std::setw(10)
-                << "Product name: " << std::setw(10)
-                << "Product Quantity: \n";
+                << "ID: " << "      "
+                << "Name: " << "     "
+                << "Qty: \n";
       for (std::pair<int, Product> list: inventory) {
-        std::cout << list.first
-                  << list.second.GetProduct() << std::setw(10)
+        std::cout << list.first << "       "
+                  << list.second.GetProduct() << "        "
                   << list.second.GetQuantity() << "\n";
       }
       
