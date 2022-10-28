@@ -48,6 +48,7 @@ int main() {
             << inventory.at(productid).GetProduct() 
             << "'s with the Product ID: " << productid << "\n"
             << "===================== \n";
+      
     } else if (input == 'S' || input == 's') {
       int id;
       std::cout << "Please enter Product ID to find its name and quantity: ";
@@ -55,10 +56,13 @@ int main() {
       std::cout << "There are " << inventory.at(id).GetQuantity() 
                 << "x " << inventory.at(id).GetProduct() << "'s in your inventory \n";
 
-
-      
     } else if (input == 'V' || input == 'v') {
-      std::cout << "Here is the list of your inventory:\n"
+      if (inventory.size() == 0) {
+        std::cout << "Here is the list of your inventory:\n"
+                << "=============================== \n"
+                << "Your inventory is empty!\n";
+      } else if (inventory.size() > 0) { 
+        std::cout << "Here is the list of your inventory:\n"
                 << "=============================== \n"
                 << "ID: " << "      "
                 << "Name: " << "     "
@@ -67,15 +71,18 @@ int main() {
         std::cout << list.first << "       "
                   << list.second.GetProduct() << "        "
                   << list.second.GetQuantity() << "\n";
+        }
       }
+    } else if (input == 'R' || input == 'r') {
+      int user_remove; 
+      std::cout << "Enter the product ID you would like to remove: ";
+      std::cin >> user_remove;
+      inventory.erase(user_remove);
+      std::cout << "Processing... \n";
+      std::cout << "The Product with the Product ID: " << user_remove << " has been removed from the inventory \n";
     } else {
       std::cout << "Invalid Input!";
     }
- // std::cout << inventory.at(ProductID).GetProduct(); Prints ProductId name 
- // std::cout << inventory.at(ProductID)
- // std::cout << <object>.GetProduct(); Returns objects name
- // std::cout << <object>.GetQuantity(); Returns objects quantity
-  
   }
   return 0;
 }
